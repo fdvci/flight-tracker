@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flight Tracker 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="hud top-bar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <div class="title">AetherScope</div>
+          <div class="subtitle">Live global flight intelligence</div>
+        </div>
+      </div>
+      <div class="clock" id="utcClock">--:--:-- UTC</div>
+    </div>
+
+    <div class="hud control-panel">
+      <div class="control-section">
+        <label for="searchInput">Search flight / airline / airport</label>
+        <input id="searchInput" type="search" placeholder="e.g. DLH400, Lufthansa, JFK" />
+      </div>
+      <div class="control-row">
+        <div class="control-section">
+          <label for="altitudeRange">Altitude filter (0 - 45,000 ft)</label>
+          <input id="altitudeRange" type="range" min="0" max="45000" step="1000" value="45000" />
+          <div class="pill" id="altitudeLabel">≤ 45,000 ft</div>
+        </div>
+        <div class="control-section">
+          <label for="airlineFilter">Airline filter</label>
+          <input id="airlineFilter" type="text" placeholder="Enter airline/callsign prefix" />
+        </div>
+      </div>
+      <div class="legend">
+        <div class="chip"><span class="chip-dot"></span> Active flights</div>
+        <div class="chip">Neon blue trail: path history</div>
+        <div class="chip">Scroll / pinch to zoom · Drag to orbit</div>
+      </div>
+    </div>
+
+    <div class="hud status-panel">
+      <div class="stat">
+        <div class="stat-label">Flights tracked</div>
+        <div class="stat-value" id="flightCount">--</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Refresh cadence</div>
+        <div class="stat-value">20s</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Renderer</div>
+        <div class="stat-value">Three.js</div>
+      </div>
+    </div>
+
+    <div class="hud detail-card" id="detailCard" hidden>
+      <div class="detail-header">
+        <div>
+          <div class="detail-title" id="detailCallsign">---</div>
+          <div class="detail-subtitle" id="detailRoute">Origin · Destination</div>
+        </div>
+        <div class="detail-pill" id="detailCountry">--</div>
+      </div>
+      <div class="detail-grid">
+        <div><span>Aircraft</span><strong id="detailAircraft">--</strong></div>
+        <div><span>Altitude</span><strong id="detailAltitude">--</strong></div>
+        <div><span>Speed</span><strong id="detailSpeed">--</strong></div>
+        <div><span>Heading</span><strong id="detailHeading">--</strong></div>
+        <div><span>Last contact</span><strong id="detailTime">--</strong></div>
+        <div><span>ICAO24</span><strong id="detailIcao">--</strong></div>
+      </div>
+    </div>
+
+    <canvas id="scene"></canvas>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
